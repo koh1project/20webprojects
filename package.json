@@ -3,7 +3,7 @@
   "description": "",
   "scripts": {
     "start:build": "tsc -w",
-    "start:run": "nodemon build/index.js",
+    "start:scss": "node-sass form-validator/style.scss form-validator/style.css -w",
     "start": "concurrently npm:start:*"
   },
   "keywords": [],
