@@ -16,37 +16,27 @@ const showSuccess = (input: HTMLInputElement) => {
   formControl.className = `${formControl.className} success`;
 };
 
+const checkRequired = (inputArray: HTMLInputElement[]) => {
+  inputArray.forEach((input) => {
+    if (input.value.trim() === '') {
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+};
+
+const getFieldName = (input: HTMLInputElement) => {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+};
+
 const isValidEmail = (email: string) => {
-  const regex =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regex.test(String(email).toLowerCase());
 };
 
 form.addEventListener('submit', (evt: Event) => {
   evt.preventDefault();
 
-  // username.value === '' ? showError(username, 'Username is required') : showSuccess(username);
-  if (username.value === '') {
-    showError(username, 'Username is required');
-  } else {
-    showSuccess(username);
-  }
-
-  if (email.value === '') {
-    showError(email, 'email is required');
-  } else if (!isValidEmail(email.value)) {
-    showError(email, 'email is not valid');
-  } else {
-    showSuccess(email);
-  }
-  if (password.value === '') {
-    showError(password, 'password is required');
-  } else {
-    showSuccess(password);
-  }
-  if (password2.value === '') {
-    showError(password2, 'password2 is required');
-  } else {
-    showSuccess(password2);
-  }
+  checkRequired([username, email, password, password2]);
 });
