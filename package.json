@@ -3,7 +3,7 @@
   "description": "",
   "scripts": {
     "start:build": "tsc -w",
-    "start:scss": "node-sass form-validator/style.scss form-validator/style.css -w",
+    "start:scss": "node-sass movie-seat-booking/style.scss movie-seat-booking/style.css -w",
     "start": "concurrently npm:start:*"
   },
   "keywords": [],
