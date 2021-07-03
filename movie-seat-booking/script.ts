@@ -6,8 +6,17 @@ const movieSelect = document.getElementById('movie') as HTMLSelectElement;
 
 let ticketPrice = parseInt(movieSelect.value);
 
+const setMovieData = (movieIndex: number, moviePrice: string) => {
+  localStorage.setItem('selectedMovieIndex', movieIndex.toString());
+  localStorage.setItem('selectedMoviePrice', moviePrice);
+};
+
 const updateSelectedCount = () => {
   const selectedSeats = document.querySelectorAll('.row .selected') as NodeListOf<HTMLDivElement>;
+
+  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
+
+  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
 
   const selectedSeatsCount = selectedSeats.length;
 
@@ -16,8 +25,12 @@ const updateSelectedCount = () => {
 };
 
 movieSelect.addEventListener('change', (e: Event) => {
-  ticketPrice = parseInt((e.target as HTMLSelectElement).value);
-  console.log(ticketPrice);
+  const selectedElement = e.target as HTMLSelectElement;
+  ticketPrice = parseInt(selectedElement.value);
+  const { selectedIndex, value: price } = selectedElement;
+
+  setMovieData(selectedIndex, price);
+  updateSelectedCount();
 });
 
 container.addEventListener('click', (e: MouseEvent) => {
