@@ -19,9 +19,13 @@ const showSuccess = (input: HTMLInputElement) => {
 const checkRequired = (inputArray: HTMLInputElement[]) => {
   inputArray.forEach((input) => {
     if (input.value.trim() === '') {
+      
       showError(input, `${getFieldName(input)} is required`);
+      
     } else {
+      
       showSuccess(input);
+    
     }
   });
 };
