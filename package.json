@@ -3,7 +3,7 @@
   "description": "",
   "scripts": {
     "start:build": "tsc -w",
-    "start:scss": "node-sass custom-video-player/sass/main.scss custom-video-player/css/style.css -w",
+    "start:scss": "node-sass exchange-rate/sass/main.scss exchange-rate/css/style.css -w",
     "start": "concurrently npm:start:*"
   },
   "keywords": [],
