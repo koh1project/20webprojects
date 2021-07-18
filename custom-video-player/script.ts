@@ -29,7 +29,7 @@ const updateProgress = () => {
 
 // Set video time to progress
 const setVideoProgress = () => {
-  return true;
+  video.currentTime = (progress.value * video.duration) / 100;
 };
 
 // Stop video
