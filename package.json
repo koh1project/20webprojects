@@ -3,7 +3,7 @@
   "description": "",
   "scripts": {
     "start:build": "tsc -w",
-    "start:scss": "node-sass exchange-rate/sass/main.scss exchange-rate/css/style.css -w",
+    "start:scss": "node-sass dom-array-methods/sass/main.scss dom-array-methods/css/style.css -w",
     "start": "concurrently npm:start:*"
   },
   "keywords": [],
