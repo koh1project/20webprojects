@@ -53,9 +53,22 @@ const formatMoney = (number: number) => {
   return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 };
 
+// Double everyone's money
+const doubleMoney = () => {
+  data = data.map((user) => {
+    return {
+      ...user,
+      money: user.money * 2,
+    };
+  });
+
+  updateDOM();
+};
+
+
 //Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
-// doubleBtn.addEventListener('click', doubleMoney);
+doubleBtn.addEventListener('click', doubleMoney);
 // sortBtn.addEventListener('click', sortByRichest);
 // showMillionairesBtn.addEventListener('click', showMillionaires);
 // calculateWealthBtn.addEventListener('click', calculateWealth);
