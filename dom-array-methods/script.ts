@@ -65,10 +65,15 @@ const doubleMoney = () => {
   updateDOM();
 };
 
+// Sort users by richest
+const sortByRichest = () => {
+  data = data.sort((a, b) => b.money - a.money);
+  updateDOM();
+};
 
 //Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
-// sortBtn.addEventListener('click', sortByRichest);
+sortBtn.addEventListener('click', sortByRichest);
 // showMillionairesBtn.addEventListener('click', showMillionaires);
 // calculateWealthBtn.addEventListener('click', calculateWealth);
