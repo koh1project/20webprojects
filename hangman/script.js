@@ -34,6 +34,32 @@ const displayWord = () => {
   }
 };
 
+
+const showNotification = () => {
+  notification.classList.add('show');
+
+  setTimeout(() => {
+    notification.classList.remove('show');
+  }, 2000)
+};
+
+const updateWrongLettersEl = () => {
+  wrongLettersEl.innerHTML = `
+    ${ wrongLetters.length > 0 ? '<p>Wrong</p>' : ''}
+    ${ wrongLetters.map(letter => `<span>${letter}</span>` )}
+  `;
+
+  figureParts.forEach((part, index) => {
+    const errors = wrongLetters.length;
+
+    if (index < errors) {
+      part.style.display = 'block';
+    } else {
+      part.style.display = 'none';
+    }
+  });
+};
+
 window.addEventListener('keydown', evt => {
   if (evt.keyCode >= 65 && evt.keyCode <= 90) {
     const letter = evt.key;
@@ -57,13 +83,3 @@ window.addEventListener('keydown', evt => {
 });
 
 displayWord();
-
-const showNotification = () => {
-  notification.classList.add('show');
-
-  setTimeout(() => {
-    notification.classList.remove('show');
-  }, 2000)
-};
-
-const updateWrongLettersEl = () => {};
