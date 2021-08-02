@@ -8,6 +8,7 @@ const search = document.getElementById('search'),
 
 const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php";
 const API_URL_BY_ID = "https://www.themealdb.com/api/json/v1/1/lookup.php";
+const API_URL_RANDOM = "https://www.themealdb.com/api/json/v1/1/random.php";
 
 const searchMeal = (e) => {
   e.preventDefault();
@@ -56,6 +57,20 @@ const getMealById = (mealID) => {
     });
 };
 
+const getRandomMeal = () => {
+  mealsEl.innerHTML = '';
+  resultHeading.innerHTML = '';
+
+  fetch(`${API_URL_RANDOM}`)
+    .then(res => res.json())
+    .then(data => {
+      const meal = data.meals[0];
+
+      addMealToDOM(meal);
+    });
+
+};
+
 
 const addMealToDOM = (meal) => {
   const ingredients = [];
@@ -92,6 +107,7 @@ const addMealToDOM = (meal) => {
 
 
 submit.addEventListener('submit', searchMeal);
+random.addEventListener('click', getRandomMeal);
 
 mealsEl.addEventListener('click', e => {
   const mealInfo = e.path.find(item => {
