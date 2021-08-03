@@ -39,6 +39,34 @@ const playSong = () => {
 
 
 
+const prevSong = () => {
+  songIndex--;
+
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+
+  loadSong(songs[songIndex]);
+
+  playSong();
+};
+
+const nextSong = () => {
+  songIndex++;
+
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
+  }
+
+  loadSong(songs[songIndex]);
+
+  playSong();
+};
+
+
+
+
+
 loadSong(songs[songIndex]);
 
 playBtn.addEventListener('click', () => {
@@ -51,3 +79,6 @@ playBtn.addEventListener('click', () => {
     playSong();
   }
 });
+
+prevBtn.addEventListener('click', prevSong);
+nextBtn.addEventListener('click', nextSong);
