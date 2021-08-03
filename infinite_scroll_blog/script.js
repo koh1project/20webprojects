@@ -4,7 +4,7 @@ const filter = document.getElementById('filter');
 
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
-let limit = 3;
+let limit = 5;
 let page = 1;
 
 const getPosts = async () => {
@@ -40,5 +40,29 @@ const showPosts = async () => {
     postsContainer.appendChild(postEl);
   });
 };
+
+
+const showLoading = () => {
+  loading.classList.add('show');
+
+  setTimeout(() => {
+    loading.classList.remove('show');
+    setTimeout(() => {
+      page++;
+      showPosts();
+    }, 300); /* Inner setTimeout */
+
+  }, 1000); /* Outer setTimeout */
+
+};
+
+
+window.addEventListener('scroll', () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    showLoading();
+  }
+});
+
 
 showPosts();
